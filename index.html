@@ -1,88 +1,93 @@
 <!DOCTYPE html>
-<html lang='es'>
+<html lang="es">
 <head>
-    <title>¿Ya me recibí</title>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>¿Ya me recibí?</title>
     <style>
-    body {
-        text-align: center ;
-        padding: 2rem;
-        margin: 0 auto;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 2rem;
+            margin: 0 auto;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        h3 {
+            font-size: 2rem;
+            color: red;
+            transition: color 0.3s ease-in-out;
+        }
+        button {
+            background-color: #ff1d5e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #e6004c;
+        }
+        #img {
+            display: none;
+            margin-top: 20px;
+        }
+        img {
+            max-width: 80vw;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .hollow-dots-spinner {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .hollow-dots-spinner .dot {
+            width: 15px;
+            height: 15px;
+            margin: 0 5px;
+            border: 3px solid #ff1d5e;
+            border-radius: 50%;
+            animation: dots 1.2s infinite ease-in-out;
+        }
+        .hollow-dots-spinner .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .hollow-dots-spinner .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes dots {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
     </style>
 </head>
-
 <body>
-<h1>¿Ya me recibí?</h1>
-<h3 id='answer' style='color:red'>No</h3>
-<button id="reload" onclick=reload()>¿y ahora?</button>
-<div id="img" align="center" style="display: none;">
-<img src="./photo.jpg" style="max-width: 80vw;"/>
-</div>
-
-
-<script>
-function reload() {
-    let btn = document.getElementById('answer')
-    btn.innerHTML = `
-    <div class="hollow-dots-spinner" :style="spinnerStyle">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    </div>`
-    setTimeout(function () {
-      btn.innerHTML = "Aun no :c";
-      //btn.style = "color:forestgreen"
-      //document.getElementById('reload').remove()
-      //document.getElementById('img').style = "display: block"
-    }, 1500);
-}
-</script>
-
-<style>
-    .hollow-dots-spinner, .hollow-dots-spinner * {
-      margin: 0 auto;
-      box-sizing: border-box;
-    }
-
-    .hollow-dots-spinner {
-      height: 15px;
-      width: calc(30px * 3);
-    }
-
-    .hollow-dots-spinner .dot {
-      width: 15px;
-      height: 15px;
-      margin: 0 calc(15px / 2);
-      border: calc(15px / 5) solid #ff1d5e;
-      border-radius: 50%;
-      float: left;
-      transform: scale(0);
-      animation: hollow-dots-spinner-animation 1000ms ease infinite 0ms;
-    }
-
-    .hollow-dots-spinner .dot:nth-child(1) {
-      animation-delay: calc(300ms * 1);
-    }
-
-    .hollow-dots-spinner .dot:nth-child(2) {
-      animation-delay: calc(300ms * 2);
-    }
-
-    .hollow-dots-spinner .dot:nth-child(3) {
-      animation-delay: calc(300ms * 3);
-
-    }
-
-    @keyframes hollow-dots-spinner-animation {
-      50% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
-    }
-</style>
+    <h1>¿Ya me recibí?</h1>
+    <h3 id="answer">No</h3>
+    <button id="reload" onclick="reload()">¿Y ahora?</button>
+    <div id="img">
+        <img src="./photo.jpg" alt="Celebración">
+    </div>
+    <script>
+        function reload() {
+            let answer = document.getElementById('answer');
+            answer.innerHTML = `<div class="hollow-dots-spinner">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>`;
+            setTimeout(function () {
+                answer.textContent = "Aún no :c";
+                // document.getElementById('reload').remove();
+                // document.getElementById('img').style.display = "block";
+            }, 1500);
+        }
+    </script>
 </body>
+</html>
